@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Button} from 'antd'
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+            <Button type={'primary'}>Save</Button>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
