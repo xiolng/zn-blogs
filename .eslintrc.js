@@ -6,7 +6,7 @@ module.exports = {
         node: true,
         jest: true
     },
-    plugins: ["react"],
+    plugins: ["react","for-editor"],
     settings: {
         react: {
             createClass: "createReactClass",
@@ -47,6 +47,7 @@ module.exports = {
         "no-multiple-empty-lines": 0,
         "space-before-function-paren": [0, "always"], //es方法小括号前面禁止空格
         "object-curly-spacing": 0, //关闭对象 大括号换行检验
-        "no-extra-boolean-cast": 0 //禁止不必要的bool转换
+        "no-extra-boolean-cast": 0, //禁止不必要的bool转换
+        "comma-dangle": 0
     }
 };
