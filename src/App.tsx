@@ -1,30 +1,41 @@
-import React, { Component } from 'react';
-import {Button} from 'antd'
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
+import {Breadcrumb, Layout, Menu} from 'antd'
+import './App.css'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-            <Button type={'primary'}>Save</Button>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React11
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    componentDidMount(){
+        console.log(this.props)
+    }
+    render() {
+        return (
+            <Layout className="layout">
+                <Layout.Header style={{backgroundColor: '#fff'}}>
+                    <div className="logo" />
+                    <Menu
+                        mode="horizontal"
+                        defaultSelectedKeys={['1']}
+                        style={{lineHeight: '64px'}}
+                    >
+                        <Menu.Item key="1">nav 1</Menu.Item>
+                    </Menu>
+                </Layout.Header>
+                <Layout.Content style={{padding: '0 50px'}}>
+                    <Breadcrumb style={{margin: '16px 0'}}>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>List</Breadcrumb.Item>
+                        <Breadcrumb.Item>App</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <div style={{background: '#fff', padding: 24, minHeight: 280}}>
+                        {this.props.children}
+                    </div>
+                </Layout.Content>
+                <Layout.Footer style={{textAlign: 'center'}}>
+                    Ant Design ©2018 Created by Ant UED
+                </Layout.Footer>
+            </Layout>
+        )
+    }
 }
 
-export default App;
+export default App
