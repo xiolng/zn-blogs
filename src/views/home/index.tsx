@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Avatar, Icon, List} from "antd"
-import CodeBlock from "@Components/code-block";
-import ReactMarkdown from "react-markdown";
+import CodeBlock from "@Components/code-block"
+import ReactMarkdown from "react-markdown"
 
 
 interface IProps {
@@ -56,7 +56,7 @@ class Home extends Component {
                 size="large"
                 pagination={{
                     onChange: (page) => {
-                        console.log(page);
+                        console.log(page)
                     },
                     pageSize: 3,
                 }}

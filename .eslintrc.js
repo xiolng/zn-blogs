@@ -6,7 +6,7 @@ module.exports = {
         node: true,
         jest: true
     },
-    plugins: ["react","for-editor"],
+    plugins: ["react", "css-modules"],
     settings: {
         react: {
             createClass: "createReactClass",
@@ -28,7 +28,7 @@ module.exports = {
         ecmaVersion: 6,
         sourceType: "module"
     },
-    extends: "standard",
+    extends: ["standard", "plugin:css-modules/recommended"],
     rules: {
         indent: [0, 4, {
             "SwitchCase": 1
@@ -48,6 +48,8 @@ module.exports = {
         "space-before-function-paren": [0, "always"], //es方法小括号前面禁止空格
         "object-curly-spacing": 0, //关闭对象 大括号换行检验
         "no-extra-boolean-cast": 0, //禁止不必要的bool转换
-        "comma-dangle": 0
+        "comma-dangle": 0,
+        "css-modules/no-unused-class": [2, { "camelCase": true }],
+        "css-modules/no-undef-class": [2, { "camelCase": true }]
     }
 };

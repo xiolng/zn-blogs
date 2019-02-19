@@ -31,7 +31,7 @@ class NewBlogs extends Component<IProps> {
         console.log(this.props)
         this.props.form.validateFields((err: any, fieldsValue: any) => {
             if (err) {
-                return;
+                return
             }
             let list = JSON.parse(localStorage.getItem('listData') || '[]')
             list.push({...this.state, ...fieldsValue})
@@ -81,7 +81,7 @@ class NewBlogs extends Component<IProps> {
                     }
                 ],
             }
-        ];
+        ]
     }
 
     render() {
