@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import Home from '../views/home'
-import Edit from '../views/edit'
+import Home from '@Views/home'
+import Edit from '@Views/edit'
+import NewBlogs from '@Views/newBlogs'
+import Details from '@Views/details'
 
 interface routeChild {
     name: string,
@@ -31,11 +33,26 @@ export const routeData: routeItem[] = [
     },
     {
         name: 'edit',
-        path: '/edit',
+        path: '/edit/:id',
         exact: true,
         component: Edit,
         hideMenu: false
-    }
+    },
+    {
+        name: 'newBlogs',
+        path: '/newBlogs',
+        exact: true,
+        component: NewBlogs,
+        hideMenu: false
+    },
+    {
+        name: 'Details',
+        path: '/details/:id',
+        exact: true,
+        component: Details,
+        hideMenu: false
+    },
+
 ]
 
 export const router = () => (

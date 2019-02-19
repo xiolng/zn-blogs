@@ -33,6 +33,7 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false'
 
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig)
+const alias = require('./alias')
 
 // style files regexes
 const cssRegex = /\.css$/
@@ -265,6 +266,7 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+          ...alias
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {Breadcrumb, Layout, Menu} from 'antd'
 import './App.css'
+import {Link} from "react-router-dom"
 
 class App extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.props)
     }
     render() {
@@ -17,7 +18,18 @@ class App extends Component {
                         defaultSelectedKeys={['1']}
                         style={{lineHeight: '64px'}}
                     >
-                        <Menu.Item key="1">nav 1</Menu.Item>
+                        <Menu.Item key="1">
+                            <Link to={'/'}>文章列表</Link>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <Link to={'/newBlogs'}>新增</Link>
+                        </Menu.Item>
+                        <Menu.Item key="3">
+                            <Link to={'/edit'}>编辑</Link>
+                        </Menu.Item>
+                        <Menu.Item key="4">
+                            <Link to={'/details'}>详情</Link>
+                        </Menu.Item>
                     </Menu>
                 </Layout.Header>
                 <Layout.Content style={{padding: '0 50px'}}>
