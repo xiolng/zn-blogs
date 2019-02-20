@@ -4,6 +4,7 @@ import {Button, Cascader, Col, Form, Input, Row, Select} from "antd"
 import {FormComponentProps} from 'antd/lib/form'
 import CodeBlock from '@Components/code-block'
 import EditMarkdown from '@Components/markdown/edit-markdown'
+import {Ajax} from '@/axios/index.ts'
 import './style.scss'
 
 
@@ -27,8 +28,8 @@ class NewBlogs extends Component<IProps> {
     }
 
     handleOnSubmit(e: any) {
+
         e.preventDefault()
-        console.log(this.props)
         this.props.form.validateFields((err: any, fieldsValue: any) => {
             if (err) {
                 return
@@ -36,6 +37,14 @@ class NewBlogs extends Component<IProps> {
             let list = JSON.parse(localStorage.getItem('listData') || '[]')
             list.push({...this.state, ...fieldsValue})
             localStorage.setItem('listData', JSON.stringify(list))
+            Ajax.post('/api/blogs/createBlogs', {
+                data: {
+                    ...this.state,
+                    ...fieldsValue
+                }
+            }).then((res: any) => {
+                console.log(res)
+            })
         })
     }
 

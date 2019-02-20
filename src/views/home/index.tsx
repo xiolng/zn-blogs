@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Avatar, Icon, List} from "antd"
 import CodeBlock from "@Components/code-block"
 import ReactMarkdown from "react-markdown"
+import {Ajax} from "@/axios"
 
 
 interface IProps {
@@ -36,16 +37,16 @@ class Home extends Component {
         //         content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
         //     });
         // }
-        let data = list.map((v: any) => {
-            let arrCon = v.content.split('')
-            arrCon.length = 10
-            v.content = arrCon.join(',').replace(/,/g, '')
-            return v
-        })
-        this.setState({
-            listData: data
-        }, () => {
-            console.log(this.state.listData)
+        this.getList()
+    }
+
+    getList() {
+        Ajax.post(`/api/blogs/blogsList`).then((res: any) => {
+            this.setState({
+                listData: res.data
+            }, () => {
+                console.log(222, this.state.listData)
+            })
         })
     }
 
@@ -83,7 +84,7 @@ class Home extends Component {
                                 <Avatar src={item.avatar} />
                             }
                             title={
-                                <a href={item.href}>
+                                <a href={`/details/${item.id}`}>
                                     {item.title}
                                 </a>
                             }

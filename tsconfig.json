@@ -8,14 +8,14 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@/*": [
+        "./src/*"
+      ],
       "@Components/*": [
         "./src/components/*"
       ],
       "@Views/*": [
         "./src/views/*"
-      ],
-      "@/*": [
-        "./src/*"
       ]
     },
     "allowJs": true,
