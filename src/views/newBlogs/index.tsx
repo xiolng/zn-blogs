@@ -123,7 +123,7 @@ class NewBlogs extends Component<IProps> {
                                 required: true, message: '请输入文章名称'
                             }]
                         })(
-                            <Input style={{width: '260px', margin: '0 5px'}} placeholder="" />
+                            <Input style={{maxWidth: '260px', margin: '0 5px'}} placeholder="" />
                         )}
                     </Form.Item>
                     <Form.Item
@@ -140,7 +140,7 @@ class NewBlogs extends Component<IProps> {
                                 onChange={cascaderOnChange}
                                 placeholder="请输入或选择类别"
                                 showSearch={{filter}}
-                                style={{width: '260px'}}
+                                style={{maxWidth: '260px'}}
                             />
                         )}
                     </Form.Item>
@@ -153,7 +153,7 @@ class NewBlogs extends Component<IProps> {
                         })(
                             <Input.TextArea
                                 autosize={{minRows: 3, maxRows: 6}}
-                                style={{width: '260px'}}
+                                style={{maxWidth: '260px'}}
                             />
                         )}
                     </Form.Item>
