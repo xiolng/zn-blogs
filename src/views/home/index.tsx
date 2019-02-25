@@ -27,6 +27,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props)
         let list = JSON.parse(localStorage.getItem('listData') || '[]')
         // for (let i = 0; i < 23; i++) {
         //     list.push({
@@ -44,8 +45,6 @@ class Home extends Component {
         Ajax.post(`/api/blogs/blogsList`).then((res: any) => {
             this.setState({
                 listData: res.data
-            }, () => {
-                console.log(222, this.state.listData)
             })
         })
     }

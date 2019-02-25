@@ -6,7 +6,7 @@ import Edit from '@Views/edit'
 import NewBlogs from '@Views/newBlogs'
 import Details from '@Views/details'
 
-interface routeChild {
+export interface routeChild {
     name: string,
     path: string,
     exact: boolean,
@@ -14,43 +14,53 @@ interface routeChild {
     hideMenu: boolean
 }
 
-interface routeItem {
+export interface routeItem {
     name: string,
     path: string,
     exact: boolean,
     component: any,
     routes?: routeChild[],
-    hideMenu: boolean
+    hideMenu: boolean,
+    parentName: string,
+    keys: string
 }
 
 export const routeData: routeItem[] = [
     {
-        name: 'App',
+        name: 'list',
         path: '/',
         exact: true,
         component: Home,
-        hideMenu: false
+        hideMenu: false,
+        parentName: 'Home',
+        keys: '0'
     },
     {
         name: 'edit',
         path: '/edit/:id',
         exact: true,
         component: Edit,
-        hideMenu: false
+        hideMenu: false,
+        parentName: 'Home',
+        keys: '1'
     },
     {
         name: 'newBlogs',
         path: '/newBlogs',
         exact: true,
         component: NewBlogs,
-        hideMenu: false
+        hideMenu: false,
+        parentName: 'Home',
+        keys: '2'
     },
     {
         name: 'Details',
         path: '/details/:id',
         exact: true,
         component: Details,
-        hideMenu: false
+        hideMenu: false,
+        parentName: 'Home',
+        keys: '3'
     },
 
 ]

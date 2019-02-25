@@ -29,7 +29,6 @@ class Details extends Component<IProps, IState> {
     }
 
     getData() {
-        console.log(111)
         Ajax.post(`/api/blogs/blogsDetail`, {
             data: {
                 id: +this.props.match.params.id
