@@ -50,7 +50,12 @@ class MenuList extends Component {
                 }}
             >
                 {
-                    routeData.map((v: routeItem, index: number) => (
+                    routeData
+                        .filter((v) => {
+                            let token = localStorage.getItem('tokens')
+                            return token ? v : !v.auth
+                        })
+                        .map((v: routeItem, index: number) => (
                         <Menu.Item key={index}>
                             <Link to={v.path}>{v.name}</Link>
                         </Menu.Item>

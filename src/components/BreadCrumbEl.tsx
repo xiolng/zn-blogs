@@ -21,7 +21,6 @@ class BreadCrumbEl extends Component {
     }
 
     setBreadList(breadList: BreadCrumbItem) {
-        console.log(Object.values(breadList))
         return Object.values(breadList)
             .filter((value: string) => String(+value) === 'NaN')
             .map((v: string, index: number) => (

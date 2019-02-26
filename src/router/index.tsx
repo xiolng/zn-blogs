@@ -6,6 +6,8 @@ import Edit from '@Views/edit'
 import NewBlogs from '@Views/newBlogs'
 import Details from '@Views/details'
 
+import NotFound from '@Views/NotFound'
+
 export interface routeChild {
     name: string,
     path: string,
@@ -22,7 +24,8 @@ export interface routeItem {
     routes?: routeChild[],
     hideMenu: boolean,
     parentName: string,
-    keys: string
+    keys: string,
+    auth: boolean
 }
 
 export const routeData: routeItem[] = [
@@ -33,7 +36,8 @@ export const routeData: routeItem[] = [
         component: Home,
         hideMenu: false,
         parentName: 'Home',
-        keys: '0'
+        keys: '0',
+        auth: false
     },
     {
         name: 'edit',
@@ -42,7 +46,8 @@ export const routeData: routeItem[] = [
         component: Edit,
         hideMenu: false,
         parentName: 'Home',
-        keys: '1'
+        keys: '1',
+        auth: true
     },
     {
         name: 'newBlogs',
@@ -51,7 +56,8 @@ export const routeData: routeItem[] = [
         component: NewBlogs,
         hideMenu: false,
         parentName: 'Home',
-        keys: '2'
+        keys: '2',
+        auth: true
     },
     {
         name: 'Details',
@@ -60,16 +66,25 @@ export const routeData: routeItem[] = [
         component: Details,
         hideMenu: false,
         parentName: 'Home',
-        keys: '3'
+        keys: '3',
+        auth: false
     },
 
 ]
 
 export const router = () => (
-    routeData.map((item, index) => (
-        <Switch key={index}>
-            <Route exact={item.exact} path={item.path} component={item.component} />
-        </Switch>
-    ))
+    <Switch>
+        {
+            routeData
+                .map((item: routeItem, index: number) => (
+
+                    localStorage.getItem('tokens')
+                        ? <Route exact={item.exact} path={item.path} component={item.component} key={index} /> : (item.auth
+                        ? <NotFound key={index} />
+                        : <Route exact={item.exact} path={item.path} component={item.component} key={index} />)
+
+                ))
+        }
+    </Switch>
 
 )

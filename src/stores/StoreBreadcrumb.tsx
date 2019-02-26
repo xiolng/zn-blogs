@@ -21,8 +21,9 @@ class StoreBreadcrumb implements BreadcrumbInter {
     constructor() {
         this.setBreadcrumb(
             JSON.parse(
-                localStorage.getItem('NavName') || this.breadcrumb.toString()
-            )
+                localStorage.getItem('NavName') ||
+                JSON.stringify(this.breadcrumb)
+            ) || this.breadcrumb
         )
     }
 

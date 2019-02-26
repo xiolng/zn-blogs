@@ -1,4 +1,5 @@
 import Axios, {AxiosInstance, AxiosRequestConfig} from 'axios'
+import {message} from 'antd'
 
 // 接口前缀
 const BASE_URL = '/'
@@ -10,6 +11,9 @@ const getAxiosInstance = (): AxiosInstance => {
     })
     instance.interceptors.request.use((config) => ({
         ...config,
+        headers: {
+            'Authorization': localStorage.getItem('tokens')
+        },
         params: {
             // 此处注意，你的`params`应该是个对象，不能是其他数据类型
             ...(config.params || {}),
@@ -26,8 +30,9 @@ const getAxiosInstance = (): AxiosInstance => {
             }
         },
         (error) => {
+            message.error(error.response.data)
             console.log('-- error --')
-            console.log(error)
+            console.log(error.response)
             console.log('-- error --')
             return Promise.reject({
                 success: false,

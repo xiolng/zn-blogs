@@ -4,8 +4,14 @@ import BreadCrumbEl from '@Components/BreadCrumbEl'
 import MenuList from '@Components/MenuList'
 import UserBox from '@Components/UserBox'
 import './App.css'
+import Login from "@Components/login"
+import RegisterUser from '@Components/RegisterUser'
 
 class App extends Component {
+
+    componentWillReceiveProps(nextProps: any) {
+        console.log(555, nextProps)
+    }
 
     render() {
         return (
@@ -33,6 +39,8 @@ class App extends Component {
                 <Layout.Footer style={{textAlign: 'center'}}>
                     znzheng ©2019 Created by znzheng
                 </Layout.Footer>
+                <Login />
+                <RegisterUser />
             </Layout>
         )
     }
