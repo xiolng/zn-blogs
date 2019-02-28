@@ -3,6 +3,7 @@ import {routeData, routeItem} from "@/router"
 import {Menu} from "antd"
 import {Link} from "react-router-dom"
 import {storeBreadcrumb} from "@/stores"
+import {BreadCrumbItem} from '@/stores/StoreBreadcrumb'
 import {autorun} from 'mobx'
 
 const {
@@ -10,8 +11,8 @@ const {
     setBreadcrumb
 } = storeBreadcrumb
 
-
 class MenuList extends Component {
+
 
     state = {
         breadcrumb: {
@@ -23,8 +24,9 @@ class MenuList extends Component {
 
     componentDidMount() {
         autorun(() => {
+            let data: BreadCrumbItem = getBreadcrumb
             this.setState({
-                breadcrumb: {...getBreadcrumb}
+                breadcrumb: {...data}
             })
         })
     }
@@ -51,15 +53,15 @@ class MenuList extends Component {
             >
                 {
                     routeData
-                        .filter((v) => {
-                            let token = localStorage.getItem('tokens')
-                            return token ? v : !v.auth
-                        })
+                    // .filter((v) => {
+                    //     let token = localStorage.getItem('tokens')
+                    //     return token ? v : !v.auth
+                    // })
                         .map((v: routeItem, index: number) => (
-                        <Menu.Item key={index}>
-                            <Link to={v.path}>{v.name}</Link>
-                        </Menu.Item>
-                    ))
+                            <Menu.Item key={index}>
+                                <Link to={v.path}>{v.name}</Link>
+                            </Menu.Item>
+                        ))
                 }
             </Menu>
         )

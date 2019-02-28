@@ -12,7 +12,7 @@ export interface BreadcrumbInter {
 }
 
 class StoreBreadcrumb implements BreadcrumbInter {
-    @observable breadcrumb = {
+    @observable breadcrumb: BreadCrumbItem = {
         parentName: 'Home',
         name: 'list',
         keys: '0'
