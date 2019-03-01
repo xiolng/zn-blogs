@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactMarkdown from 'react-markdown'
-import {Button, Cascader, Col, Form, Input, Row, Select} from "antd"
+import {Button, Cascader, Col, Form, Input, message, Row, Select} from "antd"
 import {FormComponentProps} from 'antd/lib/form'
 import CodeBlock from '@Components/code-block'
 import EditMarkdown from '@Components/markdown/edit-markdown'
@@ -34,14 +34,11 @@ class NewBlogs extends Component<IProps> {
             if (err) {
                 return
             }
-            let list = JSON.parse(localStorage.getItem('listData') || '[]')
-            list.push({...this.state, ...fieldsValue})
-            localStorage.setItem('listData', JSON.stringify(list))
             Ajax.post('/api/blogs/createBlogs', {
                 ...this.state,
                 ...fieldsValue
             }).then((res: any) => {
-                console.log(res)
+                message.info('新建成功')
             })
         })
     }

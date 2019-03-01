@@ -1,8 +1,13 @@
-import React, { createElement } from 'react'
+import React, {createElement} from 'react'
 import classNames from 'classnames'
-import { Button } from 'antd'
+import {Button} from 'antd'
 import config from './typeConfig'
+import {storeBreadcrumb} from '@/stores'
 import styles from './index.module.scss'
+
+const {
+    setBreadcrumb
+} = storeBreadcrumb
 
 export interface IExceptionProps {
     type?: '403' | '404' | '500';
@@ -27,21 +32,25 @@ class Exception extends React.PureComponent<IExceptionProps, any> {
         super(props)
         this.state = {}
     }
+    goIndex(){
+        setBreadcrumb({
+            parentName: 'Home',
+            name: 'list',
+            keys: '0'
+        })
+    }
 
     render() {
         const {
             className,
             backText,
-            linkElement = 'a',
             type = '403',
             title,
             desc,
             img,
-            actions,
-            redirect = '/',
+            redirect,
             ...rest
         } = this.props
-        console.log(this.props)
         const pageType = type in config ? type : '404'
         const clsString = classNames(styles.exception, className)
         return (
@@ -49,24 +58,14 @@ class Exception extends React.PureComponent<IExceptionProps, any> {
                 <div className={styles.imgBlock}>
                     <div
                         className={styles.imgEle}
-                        style={{ backgroundImage: `url(${img || config[pageType].img})` }}
+                        style={{backgroundImage: `url(${img || config[pageType].img})`}}
                     />
                 </div>
                 <div className={styles.content}>
                     <h1>{title || config[pageType].title}</h1>
                     <div className={styles.desc}>{desc || config[pageType].desc}</div>
                     <div className={styles.actions}>
-                        {/* {actions || */}
-                        {/* createElement( */}
-                            {/* linkElement, */}
-                            {/* { */}
-                                {/* to: { */}
-                                    {/* path: redirect */}
-                                {/* }, */}
-                                {/* href: redirect, */}
-                            {/* }, */}
-                            {/* <Button type="primary">{backText}</Button> */}
-                        {/* )} */}
+                        <Button href={redirect} type={'primary'} onClick={() => this.goIndex()}>{backText}</Button>
                     </div>
                 </div>
             </div>

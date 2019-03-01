@@ -56,13 +56,15 @@ class Home extends Component {
                         actions={
                             [
                                 <IconText type="star-o" text="156" />,
-                                <IconText type="like-o" text="156" />,
-                                <IconText type="message" text="2" />
+                                <IconText type={'calendar'} text={'2011-01-01'} />
                             ]
                         }
                         extra={
                             <img
-                                width={272}
+                                style={{
+                                    maxWidth: 272,
+                                    width: '100%'
+                                }}
                                 alt="logo"
                                 src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
                             />}

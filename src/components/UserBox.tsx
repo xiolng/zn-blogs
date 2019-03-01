@@ -9,7 +9,8 @@ const {
     getShowLogin
 } = storeLogin
 const {
-    setShowRegister
+    setShowRegister,
+    getShowRegister
 } = storeRegister
 const UserList = ['U', 'Lucy', 'Tom', 'Edward']
 const colorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae']
@@ -21,7 +22,8 @@ interface IProps {
 interface IState {
     user: string,
     color: string,
-    showLogin: boolean
+    showLogin: boolean,
+    showRegister: boolean
 }
 
 class UserBox extends Component<IProps, IState> {
@@ -29,13 +31,15 @@ class UserBox extends Component<IProps, IState> {
     state = {
         user: '',
         color: colorList[Math.floor(Math.random() * 3)],
-        showLogin: false
+        showLogin: false,
+        showRegister: false
     }
 
     componentDidMount() {
         autorun(() => {
             this.setState({
-                showLogin: getShowLogin.showLogin
+                showLogin: getShowLogin.showLogin,
+                showRegister: getShowRegister.showRegister
             })
         })
     }
@@ -47,18 +51,12 @@ class UserBox extends Component<IProps, IState> {
             setShowLogin({
                 showLogin: this.state.showLogin
             })
-            setShowRegister({
-                showRegister: !this.state.showLogin
-            })
         })
     }
     setRegister() {
         this.setState({
             showLogin: true
         }, () => {
-            setShowLogin({
-                showLogin: !this.state.showLogin
-            })
             setShowRegister({
                 showRegister: this.state.showLogin
             })

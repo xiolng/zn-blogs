@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Route, Switch} from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 
 import Home from '@Views/home'
 import Edit from '@Views/edit'
@@ -7,6 +7,8 @@ import NewBlogs from '@Views/newBlogs'
 import Details from '@Views/details'
 
 import NotFound from '@Views/NotFound'
+import Exception403 from '@Views/NotFound/403'
+import Exception500 from '@Views/NotFound/500'
 
 export interface routeChild {
     name: string,
@@ -30,7 +32,7 @@ export interface routeItem {
 
 export const routeData: routeItem[] = [
     {
-        name: 'list',
+        name: 'List',
         path: '/',
         exact: true,
         component: Home,
@@ -40,11 +42,11 @@ export const routeData: routeItem[] = [
         auth: false
     },
     {
-        name: 'edit',
+        name: 'Edit',
         path: '/edit/:id',
         exact: true,
         component: Edit,
-        hideMenu: false,
+        hideMenu: true,
         parentName: 'Home',
         keys: '1',
         auth: true
@@ -64,26 +66,56 @@ export const routeData: routeItem[] = [
         path: '/details/:id',
         exact: true,
         component: Details,
-        hideMenu: false,
+        hideMenu: true,
         parentName: 'Home',
         keys: '3',
         auth: false
     },
+    {
+        name: '404',
+        path: '/404',
+        exact: true,
+        component: NotFound,
+        hideMenu: true,
+        parentName: 'Home',
+        keys: '404',
+        auth: false
+    },
+    {
+        name: '403',
+        path: '/403',
+        exact: true,
+        component: Exception403,
+        hideMenu: true,
+        parentName: 'Home',
+        keys: '403',
+        auth: false
+    },
+    {
+        name: '500',
+        path: '/500',
+        exact: true,
+        component: Exception500,
+        hideMenu: true,
+        parentName: 'Home',
+        keys: '500',
+        auth: false
+    },
 
 ]
+export const routeMenu = routeData.filter((v:routeItem) => !v.hideMenu)
 
 export const router = () => (
     <Switch>
         {
             routeData
+                .filter((item: routeItem) => (localStorage.getItem('tokens') && item) || (!localStorage.getItem('tokens') && !item.auth))
                 .map((item: routeItem, index: number) => (
-
-                    localStorage.getItem('tokens')
-                        ? <Route exact={item.exact} path={item.path} component={item.component} key={index} /> : (item.auth
-                        ? <NotFound key={index} />
-                        : <Route exact={item.exact} path={item.path} component={item.component} key={index} />)
-
+                    <Route exact={item.exact} path={item.path} component={item.component} key={index} />
                 ))
+        }
+        {
+            <Redirect to={'/404'} />
         }
     </Switch>
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Checkbox, Form, Icon, Input, Modal, Radio, Button, Select} from "antd"
+import {Checkbox, Form, Icon, Input, Modal, Radio, Button, Select, message} from "antd"
 import {storeRegister} from '@/stores'
 import {autorun} from "mobx"
 import {Ajax} from "@/axios"
@@ -38,9 +38,7 @@ class RegisterUser extends Component<IProps> {
             Ajax.post(`/api/login/registerUser`, {
                 data: values
             }).then((res: any) => {
-                if (res.data.token) {
-                    localStorage.setItem('tokens', `znzheng ${res.data.token}`)
-                }
+                message.info('添加用户成功')
             })
             console.log('Received values of form: ', values)
             form.resetFields()
@@ -106,7 +104,7 @@ class RegisterUser extends Component<IProps> {
         )
         return (
             <Modal
-                title="Login"
+                title="RegisterUser"
                 visible={this.state.visible}
                 onOk={() => this.handleOk()}
                 onCancel={() => this.handleCancel()}

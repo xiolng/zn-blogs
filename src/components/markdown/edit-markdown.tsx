@@ -41,7 +41,7 @@ class EditMarkdown extends PureComponent<IProps, IState> {
             lineNumbers: true,
             lineWrapping: true,
             mode: 'markdown', // 定义mode
-            extraKeys: {"Ctrl": "autocomplete"}, // 自动提示配置
+            // extraKeys: {"Ctrl": "autocomplete"}, // 自动提示配置
             theme: 'mdn-like',
             tabSize: 4,
             scrollbarStyle: 'null',

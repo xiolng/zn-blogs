@@ -11,7 +11,7 @@ class App extends Component {
     render() {
         return (
             <Layout className="layout">
-                <Layout.Header style={{backgroundColor: '#fff'}}>
+                <Layout.Header style={{backgroundColor: '#fff',height: '100%', minHeight: '64px'}}>
                     <Row type={'flex'} justify={'space-between'}>
                         <Col
                             sm={{span: 20}}

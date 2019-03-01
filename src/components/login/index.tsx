@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Checkbox, Form, Icon, Input, Modal, Radio, Button} from "antd"
+import {Checkbox, Form, Icon, Input, Modal, Radio, Button, message} from "antd"
 import {storeLogin} from '@/stores'
 import {autorun} from "mobx"
 import {Ajax} from "@/axios"
@@ -22,9 +22,12 @@ class Login extends Component<IProps> {
 
     componentDidMount() {
         autorun(() => {
-            this.setState({
-                visible: getShowLogin.showLogin
-            })
+            let loginStatus = {...getShowLogin}
+            if (!!this.state.visible !== !!loginStatus.showLogin){
+                this.setState({
+                    visible: loginStatus.showLogin
+                })
+            }
         })
     }
 
@@ -38,10 +41,10 @@ class Login extends Component<IProps> {
                 data: values
             }).then((res: any) => {
                 if (res.data.token) {
-                    localStorage.setItem('tokens', `znzheng ${res.data.token}`)
+                    localStorage.setItem('tokens', `Bearer ${res.data.token}`)
                 }
+                message.info('登录成功')
             })
-            console.log('Received values of form: ', values)
             form.resetFields()
             this.closeModal()
         })

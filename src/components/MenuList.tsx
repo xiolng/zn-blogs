@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {routeData, routeItem} from "@/router"
+import {routeMenu, routeItem} from "@/router"
 import {Menu} from "antd"
 import {Link} from "react-router-dom"
 import {storeBreadcrumb} from "@/stores"
@@ -32,6 +32,7 @@ class MenuList extends Component {
     }
 
     setNav(breadCrumb: routeItem): void {
+        console.log(breadCrumb)
         const {
             parentName,
             name,
@@ -47,19 +48,16 @@ class MenuList extends Component {
                 selectedKeys={[this.state.breadcrumb.keys]}
                 style={{lineHeight: '64px'}}
                 onClick={({item, key, keyPath}) => {
-                    let value = routeData[+key]
+                    let value = routeMenu[+key]
                     this.setNav(value)
                 }}
             >
                 {
-                    routeData
-                    // .filter((v) => {
-                    //     let token = localStorage.getItem('tokens')
-                    //     return token ? v : !v.auth
-                    // })
+                    routeMenu
+                    .filter((v) => !v.hideMenu)
                         .map((v: routeItem, index: number) => (
                             <Menu.Item key={index}>
-                                <Link to={v.path}>{v.name}</Link>
+                                <Link to={(!localStorage.getItem('tokens') && v.auth) ? '/403' : v.path}>{v.name}</Link>
                             </Menu.Item>
                         ))
                 }

@@ -22,7 +22,7 @@ class StoreLogin implements LoginInter {
 
     @action.bound
     setShowLogin(showLogin: LoginShowItem): void {
-        Object.assign(this.showLogin, showLogin)
+        Object.assign(this.showLogin, {...showLogin})
         console.log(this.showLogin)
     }
 }

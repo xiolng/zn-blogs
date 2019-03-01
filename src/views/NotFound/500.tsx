@@ -1,12 +1,12 @@
 import React from 'react';
 import Exception from '@Components/Exception';
 
-const NotFound = () => (
+const Exception500 = () => (
     <Exception
-        type="404"
+        type="500"
         backText={'返回首页'}
         redirect={'/'}
     />
 );
 
-export default NotFound;
+export default Exception500;
