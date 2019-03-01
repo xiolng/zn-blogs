@@ -23,7 +23,7 @@ class Login extends Component<IProps> {
     componentDidMount() {
         autorun(() => {
             let loginStatus = {...getShowLogin}
-            if (!!this.state.visible !== !!loginStatus.showLogin){
+            if (!!this.state.visible !== !!loginStatus.showLogin) {
                 this.setState({
                     visible: loginStatus.showLogin
                 })

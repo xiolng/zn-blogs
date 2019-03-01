@@ -1,5 +1,5 @@
-import React from 'react';
-import Exception from '@Components/Exception';
+import React from 'react'
+import Exception from '@Components/Exception'
 
 const Exception500 = () => (
     <Exception
@@ -7,6 +7,6 @@ const Exception500 = () => (
         backText={'返回首页'}
         redirect={'/'}
     />
-);
+)
 
-export default Exception500;
+export default Exception500

@@ -1,5 +1,5 @@
-import React from 'react';
-import Exception from '@Components/Exception';
+import React from 'react'
+import Exception from '@Components/Exception'
 
 const NotFound = () => (
     <Exception
@@ -7,6 +7,6 @@ const NotFound = () => (
         backText={'返回首页'}
         redirect={'/'}
     />
-);
+)
 
-export default NotFound;
+export default NotFound

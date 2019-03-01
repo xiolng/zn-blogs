@@ -32,7 +32,7 @@ class Exception extends React.PureComponent<IExceptionProps, any> {
         super(props)
         this.state = {}
     }
-    goIndex(){
+    goIndex() {
         setBreadcrumb({
             parentName: 'Home',
             name: 'list',
